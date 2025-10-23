@@ -25,7 +25,7 @@ EXPOSE 8080
 # Controls whether to import the bundled realm file on startup.
 # Set to "true" only when targeting an empty database or when you intend to re-import/overwrite.
 # For an already initialized database, leave this as "false" to avoid import conflicts.
-ENV KEYCLOAK_IMPORT=false
+ENV KEYCLOAK_IMPORT=true
 
 # Start Keycloak using external database configuration supplied at runtime via env vars:
 #   KC_DB=postgres
