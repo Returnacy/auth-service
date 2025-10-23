@@ -18,8 +18,7 @@ COPY returnacy-realm-export.json /opt/keycloak/data/import/returnacy-realm.json
 # If there are no JARs present, this will still work (no-op)
 COPY providers/ /opt/keycloak/providers/
 
-# Optimize/build the server distribution (recommended for production)
-RUN /opt/keycloak/bin/kc.sh build
+# Do not pre-build here; we'll use --auto-build at runtime so DB/hostname env vars are respected
 
 EXPOSE 8080
 
