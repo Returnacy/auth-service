@@ -42,4 +42,11 @@ ENV KEYCLOAK_IMPORT=false
 #   KC_PROXY=edge
 #
 # To import the realm on startup, set KEYCLOAK_IMPORT=true. Otherwise, it will just start normally.
-CMD ["/bin/sh","-c","if [ \"$KEYCLOAK_IMPORT\" = \"true\" ]; then exec /opt/keycloak/bin/kc.sh start --optimized --import-realm; else exec /opt/keycloak/bin/kc.sh start --optimized; fi"]
+# Note: The base Keycloak image sets an ENTRYPOINT to kc.sh. We override it with a small wrapper
+# to support conditional realm import without passing "/bin/sh" as an argument to kc.sh.
+
+COPY start-keycloak.sh /opt/keycloak/start-keycloak.sh
+RUN chmod +x /opt/keycloak/start-keycloak.sh
+
+# Override base ENTRYPOINT to our wrapper script
+ENTRYPOINT ["/opt/keycloak/start-keycloak.sh"]
