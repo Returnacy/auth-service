@@ -45,8 +45,8 @@ ENV KEYCLOAK_IMPORT=false
 # Note: The base Keycloak image sets an ENTRYPOINT to kc.sh. We override it with a small wrapper
 # to support conditional realm import without passing "/bin/sh" as an argument to kc.sh.
 
-COPY start-keycloak.sh /opt/keycloak/start-keycloak.sh
-RUN chmod +x /opt/keycloak/start-keycloak.sh
+# Copy wrapper with executable bit set at build time (base image may use non-root user)
+COPY --chmod=0755 start-keycloak.sh /opt/keycloak/start-keycloak.sh
 
 # Override base ENTRYPOINT to our wrapper script
 ENTRYPOINT ["/opt/keycloak/start-keycloak.sh"]
