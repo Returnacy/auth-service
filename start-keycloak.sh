@@ -11,8 +11,11 @@ fi
 # Allow startup without an explicit hostname; set KC_HOSTNAME later for strict mode
 [ -z "$KC_HOSTNAME" ] && [ -z "$KC_HOSTNAME_STRICT" ] && export KC_HOSTNAME_STRICT=false
 
+# Build at runtime so current env vars (DB/hostname) are persisted for optimized start
+/opt/keycloak/bin/kc.sh build
+
 # Build the kc.sh command with optional import flag
-CMD_ARGS="start --optimized --auto-build"
+CMD_ARGS="start --optimized"
 if [ "$KEYCLOAK_IMPORT" = "true" ]; then
   CMD_ARGS="$CMD_ARGS --import-realm"
 fi
