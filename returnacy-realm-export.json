@@ -440,6 +440,17 @@
         }
       ],
       "admin-cli": [],
+      "domain-mapper-service": [
+        {
+          "id": "a4ee5d68-c4f4-46b8-8dec-cd3bf16bc5be",
+          "name": "query",
+          "description": "Query endpoint and ids",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "1dd8308a-dee1-4f16-bc37-0f4b9346d12f",
+          "attributes": {}
+        }
+      ],
       "account": [
         {
           "id": "bd42db5a-bd5b-4e69-b404-f800402dd8ab",
@@ -664,6 +675,9 @@
         "user-service": [
           "read",
           "list"
+        ],
+        "domain-mapper-service": [
+          "query"
         ]
       },
       "notBefore": 0,
@@ -690,8 +704,27 @@
         "user-service": [
           "query",
           "write"
+        ],
+        "domain-mapper-service": [
+          "query"
         ]
       },
+      "notBefore": 0,
+      "groups": []
+    },
+    {
+      "id": "311294a5-b09f-44d4-a3f1-7a2970af21f0",
+      "username": "service-account-domain-mapper-service",
+      "emailVerified": false,
+      "createdTimestamp": 1762095053600,
+      "enabled": true,
+      "totp": false,
+      "serviceAccountClientId": "domain-mapper-service",
+      "disableableCredentialTypes": [],
+      "requiredActions": [],
+      "realmRoles": [
+        "default-roles-returnacy"
+      ],
       "notBefore": 0,
       "groups": []
     },
@@ -708,6 +741,11 @@
       "realmRoles": [
         "default-roles-returnacy"
       ],
+      "clientRoles": {
+        "domain-mapper-service": [
+          "query"
+        ]
+      },
       "notBefore": 0,
       "groups": []
     },
@@ -732,6 +770,9 @@
         ],
         "messaging-service": [
           "send"
+        ],
+        "domain-mapper-service": [
+          "query"
         ]
       },
       "notBefore": 0,
@@ -1172,7 +1213,7 @@
       "enabled": true,
       "alwaysDisplayInConsole": true,
       "clientAuthenticatorType": "client-secret",
-      "secret": "QCIPpwDUTfqYXF82y69mpQazLu2XPmsr",
+      "secret": "**********",
       "redirectUris": [
         "/*"
       ],
@@ -1277,7 +1318,7 @@
       "enabled": true,
       "alwaysDisplayInConsole": true,
       "clientAuthenticatorType": "client-secret",
-      "secret": "5kpSxI2zF5PN1oDvcA9gOTAjVFY9md6K",
+      "secret": "**********",
       "redirectUris": [
         "/*"
       ],
@@ -1372,6 +1413,108 @@
       ]
     },
     {
+      "id": "1dd8308a-dee1-4f16-bc37-0f4b9346d12f",
+      "clientId": "domain-mapper-service",
+      "name": "domain-mapper-service",
+      "description": "",
+      "rootUrl": "",
+      "adminUrl": "",
+      "baseUrl": "",
+      "surrogateAuthRequired": false,
+      "enabled": true,
+      "alwaysDisplayInConsole": true,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "**********",
+      "redirectUris": [
+        "/*"
+      ],
+      "webOrigins": [
+        "/*"
+      ],
+      "notBefore": 0,
+      "bearerOnly": false,
+      "consentRequired": false,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": true,
+      "serviceAccountsEnabled": true,
+      "publicClient": false,
+      "frontchannelLogout": true,
+      "protocol": "openid-connect",
+      "attributes": {
+        "oidc.ciba.grant.enabled": "false",
+        "client.secret.creation.time": "1762095053",
+        "backchannel.logout.session.required": "true",
+        "oauth2.device.authorization.grant.enabled": "false",
+        "backchannel.logout.revoke.offline.tokens": "false"
+      },
+      "authenticationFlowBindingOverrides": {},
+      "fullScopeAllowed": true,
+      "nodeReRegistrationTimeout": -1,
+      "protocolMappers": [
+        {
+          "id": "249fee20-c7b4-4c5a-88d4-fb8ccd3aa252",
+          "name": "Client Host",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usersessionmodel-note-mapper",
+          "consentRequired": false,
+          "config": {
+            "user.session.note": "clientHost",
+            "id.token.claim": "true",
+            "introspection.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "clientHost",
+            "jsonType.label": "String"
+          }
+        },
+        {
+          "id": "192ed0d9-7b3d-4d73-913e-93e2cc7a5068",
+          "name": "Client ID",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usersessionmodel-note-mapper",
+          "consentRequired": false,
+          "config": {
+            "user.session.note": "client_id",
+            "id.token.claim": "true",
+            "introspection.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "client_id",
+            "jsonType.label": "String"
+          }
+        },
+        {
+          "id": "cf20c284-d0d9-4ab7-be21-a85461c0df7c",
+          "name": "Client IP Address",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usersessionmodel-note-mapper",
+          "consentRequired": false,
+          "config": {
+            "user.session.note": "clientAddress",
+            "id.token.claim": "true",
+            "introspection.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "clientAddress",
+            "jsonType.label": "String"
+          }
+        }
+      ],
+      "defaultClientScopes": [
+        "web-origins",
+        "acr",
+        "membership-claims",
+        "profile",
+        "roles",
+        "basic",
+        "email"
+      ],
+      "optionalClientScopes": [
+        "address",
+        "phone",
+        "offline_access",
+        "microprofile-jwt"
+      ]
+    },
+    {
       "id": "85c0646e-f530-4c1c-8c93-250c57db285d",
       "clientId": "frontend-spa",
       "name": "frontend-spa",
@@ -1451,7 +1594,7 @@
       "enabled": true,
       "alwaysDisplayInConsole": true,
       "clientAuthenticatorType": "client-secret",
-      "secret": "Q4D9wJbVGHzkaUu2N5GRW80a8CZ2O4N9",
+      "secret": "**********",
       "redirectUris": [
         "/*"
       ],
@@ -1664,7 +1807,7 @@
       "enabled": true,
       "alwaysDisplayInConsole": true,
       "clientAuthenticatorType": "client-secret",
-      "secret": "RCu8oRpgmaSQByMEkLOFMynVU5NvQqbi",
+      "secret": "**********",
       "redirectUris": [
         "/*"
       ],
@@ -2433,7 +2576,7 @@
       "config": {
         "hideOnLoginPage": "false",
         "acceptsPromptNoneForwardFromClient": "false",
-        "clientId": "686092411702-t1o4o5qdb5fagcf44gfa9kacbh2ae071.apps.googleusercontent.com",
+        "clientId": "686092411702-cjtkjsiidjdap81c6kjnkrre8mefpmuc.apps.googleusercontent.com",
         "disableUserInfo": "false",
         "filteredByClaim": "false",
         "syncMode": "LEGACY",
@@ -2480,14 +2623,14 @@
         "subComponents": {},
         "config": {
           "allowed-protocol-mapper-types": [
-            "saml-user-property-mapper",
-            "oidc-usermodel-attribute-mapper",
-            "oidc-full-name-mapper",
-            "oidc-usermodel-property-mapper",
+            "oidc-address-mapper",
             "oidc-sha256-pairwise-sub-mapper",
             "saml-role-list-mapper",
-            "oidc-address-mapper",
-            "saml-user-attribute-mapper"
+            "oidc-full-name-mapper",
+            "saml-user-attribute-mapper",
+            "oidc-usermodel-attribute-mapper",
+            "oidc-usermodel-property-mapper",
+            "saml-user-property-mapper"
           ]
         }
       },
@@ -2507,14 +2650,14 @@
         "subComponents": {},
         "config": {
           "allowed-protocol-mapper-types": [
-            "oidc-sha256-pairwise-sub-mapper",
-            "oidc-usermodel-attribute-mapper",
             "saml-role-list-mapper",
-            "saml-user-attribute-mapper",
             "oidc-full-name-mapper",
-            "oidc-address-mapper",
+            "oidc-usermodel-attribute-mapper",
+            "saml-user-attribute-mapper",
+            "oidc-sha256-pairwise-sub-mapper",
+            "oidc-usermodel-property-mapper",
             "saml-user-property-mapper",
-            "oidc-usermodel-property-mapper"
+            "oidc-address-mapper"
           ]
         }
       },
@@ -3278,7 +3421,7 @@
     "clientSessionMaxLifespan": "0",
     "organizationsEnabled": "false"
   },
-  "keycloakVersion": "25.0.0",
+  "keycloakVersion": "25.0.6",
   "userManagedAccessAllowed": false,
   "organizationsEnabled": false,
   "clientProfiles": {
